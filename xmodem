@@ -1,0 +1,136 @@
+* Notes
+
+
+** Issues: 
+
+This is a simple implementation. It needs some time-out errors. Also, it is not the fastest! 
+If the next level up of XMODEM was implemented (1024 byte blocks) it would be so much faster, 
+and rewriting in assembler would make it faster still. 
+At the moment it’s too slow to be used to dump the entire memory map, so it’s more a proof of concept.
+
+** Example:
+
+8192 1024 transmit
+
+Start the XMODEM receive feature on client terminal,  
+using simplest form - which is with a checksum not CRC checking and 128 byte blocks. 
+Transmit will send 1 or more 128 byte blocks. 
+
+This assumes a serial port with two I/O ports: one for Control/Status, and one for Data I/O.
+Their values are stored in the status and data variables. On the Z80ctrl for example, the valure are:
+
+DECIMAL
+16 STATUS ! 
+17 DATA !
+
+on the Minstrel4th:
+
+DECIMAL
+128 STATUS ! 
+129 DATA !
+
+The port should be initilized and configured for non-interrupt mode. That would probably be
+
+decmial
+22 STATUS @ OUT
+
+
+** Dictionary
+
+DECIMAL
+128 VARIABLE STATUS
+129 VARIABLE DATA
+0 VARIABLE CHKSUM
+0 VARIABLE REX#
+1 CONSTANT SOH
+4 CONSTANT EOT
+6 CONSTANT ACK
+
+: SEND
+( send a byte and and wait to be sure )
+ DATA @ OUT 
+ BEGIN
+	STATUS @ IN 2 AND
+	2 = 
+ UNTIL
+;
+
+: GET
+( get a byte if status is good )
+ STATUS @ IN 1 AND
+ 1 =
+ IF
+ 	DATA @ IN
+ ELSE
+	-1
+ THEN
+;
+
+: WAIT
+( wait until receiver is ready )
+BEGIN
+	GET NAK =
+UNTIL
+;
+
+: CALCSUM
+( calc the checksum )
+0 SWAP 128 OVER +
+SWAP
+DO
+	I C@ +
+LOOP
+255 AND CHKSUM !
+;
+
+: INCREX#
+( increase block number )
+REX# @ 1+ 255 AND
+REX# !
+;
+
+
+: SENDBLOCK
+(  address - )
+( send 128 bytes with checksum )
+ DUP CALCSUM SOH SEND REX#  
+ @ DUP SEND 255 SWAP 
+ - SEND 128 0
+ DO
+	DUP C@ SEND 1+
+ LOOP
+ CHKSUM @ SEND 5 0
+ DO
+	GET ACK =
+	 IF
+	.” OK “
+	0 CHKSUM ! LEAVE
+ 	ELSE
+	-1 CHKSUM !
+ 	THEN
+ LOOP
+ CHKSUM @ -1 =
+ IF
+	.” Error”
+ THEN
+;
+
+: TRANSMIT
+( 	start address, length )
+128 / WAIT CR .” Sending.. “
+1 REX# ! 0
+DO
+	CR REX# @ .” Block: “
+	. SENDBLOCK INCREX#
+LOOP
+CR .” sent..”
+DROP EOT SEND 5 0
+	DO
+		GET ACK =
+		IF
+		.” done.”
+		LEAVE
+		THEN
+	LOOP
+ CR
+;
