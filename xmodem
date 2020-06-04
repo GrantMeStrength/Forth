@@ -34,6 +34,12 @@ The port should be initilized and configured for non-interrupt mode. That would 
 decmial
 22 STATUS @ OUT
 
+** References
+
+http://web.mit.edu/6.115/www/amulet/xmodem.htm
+https://pythonhosted.org/xmodem/xmodem.html
+https://gist.github.com/zonque/0ae2dc8cedbcdbd9b933
+https://www.complang.tuwien.ac.at/forth/ftp.dei.isep.ipp.pt/pub/forth/ibm/xmodem.fth
 
 ** Dictionary
 
