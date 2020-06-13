@@ -1,0 +1,25 @@
+## List user-defined words
+## Written by Krystine Mason
+
+: cmove 
+dup 0= if 
+drop drop
+else
+over + rot rot dup 
+rot - rot rot
+do 
+dup i swap - c@ i c!
+loop 
+then
+drop
+;
+: (output) .nfa 15392 @ swap cmove list ;
+: words begin dup (output) .lnk ram? 0= until ;
+: .NFA 
+1- DUP C@ 63 AND 
+SWAP RAM?
+IF 2- THEN
+2- OVER - 
+SWAP TYPE ;
+: .lnk 3 - @ 1 + ;
+: RAM? DUP 8191 > ;
