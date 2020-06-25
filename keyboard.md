@@ -2,11 +2,15 @@
 
 The original Jupiter Ace had a terrible keyboard: rubbery, but even cheaper and less reliable than the ZX Spectrum (if you can believe it).
 
+![Case](keyboard6.png)
+
 The Minstrel4th kit has an optional keyboard made with tactile buttons. It works perfectly well, but it's not fun to type long programs on it. I needed something better.
 
 ## Plates
 
 The secret to making a keyboard I found, is getting the right keyboard template designed and made. Can you imaging the effort in creating a suitable layout for a keyboard? Thankfully you don't have to - you can [use this website](http://www.keyboard-layout-editor.com/#/) or [here](http://www.keyboard-layout-editor.com/##@@_x:1&a:0%3B&=!%0A1%0A%0A%0ADel%20line&=%2F@%0A2%0A%0A%0ACaps&_a:4%3B&=%23%0A3&_a:0%3B&=$%0A4%0A%0A%0AInv%20Vid&=%25%0A5%0A%0A%0A%E2%86%90&=%2F&%0A6%0A%0A%0A%E2%86%91&=%2F&%0A7%0A%0A%0A%E2%86%93&=(%0A8%0A%0A%0A%E2%86%92&=)%0A9%0A%0A%0AGraph&=%2F_%0A0%0A%0A%0ADelete%3B&@_x:1.5&a:4%3B&=Q&=W&=E&=R%0A%3C&=T%0A%3E&=Y%0A%5B&=U%0A%5D&=I%0A%C2%A9&=O%0A%2F%3B&=P%0A%22%3B&@_x:1.75%3B&=A%0A~&=S%0A%7C&=D%0A%5C&=F%0A%5B&=G%0A%5D&=H%0A%5E&=J%0A-&=K%0A+&=L%0A%2F=&_a:6%3B&=Enter%3B&@_x:1.25&fa@:2%3B%3B&=Shift&_a:4&f:3%3B&=Z%0A%2F:&_f:3%3B&=X%0A%C2%A3&_f:3%3B&=C%0A%3F&_f:3%3B&=V%0A%2F%2F&_f:3%3B&=B%0A*&_f:3%3B&=N%0A,&_f:3%3B&=M%0A.&_a:6%3B&=Symbol%20Shift&_a:4&fa@:1&:0&:0&:0&:0&:0&:2%3B%3B&=Break%0A%0A%0A%0A%0A%0ASpace) on Chrome which might include my design. It will create a layout you can then export, like this:
+
+![Layout](keyboard1.png)
 
 [{x:1,a:0},"!\n1\n\n\nDel line","@\n2\n\n\nCaps",{a:4},"#\n3",{a:0},"$\n4\n\n\nInv Vid","%\n5\n\n\n←","&\n6\n\n\n↑","&\n7\n\n\n↓","(\n8\n\n\n→",")\n9\n\n\nGraph","_\n0\n\n\nDelete"],
 [{x:1.5,a:4},"Q","W","E","R\n<","T\n>","Y\n[","U\n]","I\n©","O\n;","P\n\""],
@@ -31,11 +35,15 @@ The sensible way to solder a keyboard matrix is to get a PCB made. This will not
 
 The next most sensible way to solder the keys is to get a long piece of single strand wire, and lay it over the keys and solder each point, repeating for each row. Then cover these wires in something insulating like Kapton tape, and lay the column wires over and solder them.
 
+![Soldering](keyboard3.png)
+
 On no account just cut up a hundred short pieces of hook-up wire and solder each switch. It's madness. Don't do it. Learn from my mistake.
 
 ## Assembling
 
 Use various spacers to combine the keyboard baseplate and the plate that goes on top. It can look pretty sharp (as long as no-one looks at the wiring side).
+
+![Assembly](keyboard4.png)
 
 ## Connecting the keyboard
 
@@ -53,5 +61,11 @@ But be warned: you might spend a lot of time and effort improving the keyboard b
 
 The original Jupiter Ace case was also terrible. Thin, brittle plastic. And yet somehow I made something worse.
 
+
+
 It started off ok, with a solid acrylic plastic base to attach the keyboard and the Minstrel board. Then I got cocky and tried to make the rest. Let's just say acrylic is great for 2D cuts, and anything else takes more time and talent than I have.
+
+![Case](keyboard2.png)
+
+![Case](keyboard5.png)
 
