@@ -4,7 +4,7 @@ I've always been the fan of the Jupiter Ace 8-bit micro from the 1980s, ever sin
 
 
 ## Hardware
-Basic plans for a keyboard and case suitable for the Minstrel4th
+Basic plans for a [keyboard and case](keyboard.md) suitable for the Minstrel4th
 
 
 ## Forth code
